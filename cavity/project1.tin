@@ -1,0 +1,79 @@
+// tetin file version 1.1
+// written by ICEM CFD - version 19.2 on Wed Jun 28 14:18:58 2023
+
+set_triangulation_tolerance 0.001
+# In ICEM CFD 4.2 the family_boco file is no longer tied to tetin
+# read_family_boco family_boco
+define_family GEOM color 16663866
+define_family FLOW prism 1 tetra_size 0.001 height 0.003 hratio 1.2 nlay 5 width 0 min 0.0 dev 0.0 prism_height_limit 0 law -1 color 14693271
+define_family WALL prism 1 tetra_size 0.001 height 0.003 hratio 1.2 nlay 5 width 0 min 0.0 dev 0.0 prism_height_limit 0 law -1 color 3604041
+define_family FLUID color 12109107
+
+prescribed_point 0 0 0 family GEOM name pnt.00
+prescribed_point 0.1 0 0 family GEOM name pnt.01
+prescribed_point 0 -0.1 0 family GEOM name pnt.02
+prescribed_point 0.1 -0.1 0 family GEOM name pnt.03
+define_curve height 0.003 size_ratio 1.2 height_ratio 1.2 nlayers 5 family FLOW tetra_size 0.001 name crv.00 vertex1 pnt.00 vertex2 pnt.01
+bspline
+2,2,0
+0,0,1,1
+0,0,0
+0.1,0,0
+define_curve height 0.003 size_ratio 1.2 height_ratio 1.2 nlayers 5 family WALL tetra_size 0.001 name crv.01 vertex1 pnt.01 vertex2 pnt.03
+bspline
+2,2,0
+0,0,1,1
+0.1,0,0
+0.1,-0.1,0
+define_curve height 0.003 size_ratio 1.2 height_ratio 1.2 nlayers 5 family WALL tetra_size 0.001 name crv.02 vertex1 pnt.03 vertex2 pnt.02
+bspline
+2,2,0
+0,0,1,1
+0.1,-0.1,0
+0,-0.1,0
+define_curve height 0.003 size_ratio 1.2 height_ratio 1.2 nlayers 5 family WALL tetra_size 0.001 name crv.03 vertex1 pnt.02 vertex2 pnt.00
+bspline
+2,2,0
+0,0,1,1
+0,-0.1,0
+0,0,0
+affix 0
+define_model 0.0049999999 reference_size 1
+global_meshing_parameter triangle_quality "inscribed_area"
+global_meshing_parameter tgrid_max_cell_skew "0.90"
+global_meshing_parameter tgrid_max_cap_skew "0.98"
+global_meshing_parameter tgrid_smoothing_level "1"
+global_meshing_parameter tgrid_enhance_offset_comp "0"
+global_meshing_parameter tgrid_enhance_norm_comp "0"
+global_meshing_parameter tgrid_gap_factor "0.5"
+global_meshing_parameter tgrid_fix_first_layer "0"
+global_meshing_parameter tgrid_n_ortho_layers "0"
+global_meshing_parameter quadratic "0"
+global_meshing_parameter snorm "1"
+global_meshing_parameter shrinkwrap_projfactor "0.1"
+global_meshing_parameter shrinkwrap_nsmooth "5"
+global_meshing_parameter free_bunch "0"
+global_meshing_parameter mapped_method "1"
+global_meshing_parameter merge_surfs "1"
+global_meshing_parameter max_elements "0"
+global_meshing_parameter max_nodes "0"
+global_meshing_parameter min_angle "0.0"
+global_meshing_parameter max_length "0.0"
+global_meshing_parameter max_area "0.0"
+global_meshing_parameter smooth_dormant "0"
+global_meshing_parameter mesh_dormant "0"
+global_meshing_parameter impr_level "1"
+global_meshing_parameter try_harder "1"
+global_meshing_parameter ign_size "7e-005"
+global_meshing_parameter surf_sizes "0"
+global_meshing_parameter proj_surf "1"
+global_meshing_parameter adjust_nodes_max "0.0"
+global_meshing_parameter block_mapping "0.2"
+global_meshing_parameter bound_smooth "0"
+global_meshing_parameter protect_line "0"
+global_meshing_parameter bunch_respect "0"
+global_meshing_parameter simple_offset "0"
+global_meshing_parameter mesh_method "1"
+global_meshing_parameter mesh_type "0"
+define_prism_meshing_parameters law 0 nlay 5 height 0.001 hratio 1.2 tot_height 0.003 min_quality 0.01 fillet 0.1 tetra_smooth_limit 0.3
+return
